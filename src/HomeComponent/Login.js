@@ -48,19 +48,21 @@ state = {
       // browserHistory.push('/User');
       // { <Context datainfo={result.data}/>}
     //  {this.state.userdata && <Context user={this.state.userdata.data} />}
-            if(result.status===404) {
-              console.log('err 404')
-              const email_err="Please enter valid email";
-              this.setState({email_error:email_err})
-              return null;
-            }
-            if(result.status===401) return console.log('password invalid...')
+
             // if(result.status===200) {window.location.href="/user"}
       
-  })
-    .catch(err =>console.log(err));
+      })
+    .catch(err =>{ 
+    if(err.response.status===401) return console.log('password invalid...')
+    if(err.response.status===404) {
+    console.log('err 404')
+    const email_err="Please enter valid email";
+    this.setState({email_error:email_err})
+    return null;
+      }
+    }
     
-
+    );
   }
   
   userinformation =() =>{
@@ -79,7 +81,7 @@ state = {
            </div>
           <div className="form">
              <form onSubmit={this.handlesubmit}>
-               {this.state.email_error ? "Please enter valid email":""}
+               {this.state.email_error ? <p className="invalid-email">Please enter valid email</p>:""}
                <Form 
                name="email"
                label="Email"
@@ -110,43 +112,6 @@ state = {
          </div> 
 
           } 
-          
-            {/* <div className="Register">
-            
-              <div className="Register-header">
-               <p>Login , If you are already registered ....</p>
-             </div>
-            <div className="form">
-               <form onSubmit={this.handlesubmit}>
-
-                 <Form 
-                 name="email"
-                 label="Email"
-                 type="text"
-                 id="email"
-                 placeholder="Enter your Email" 
-                 value={this.state.account.email}
-                 onChange={this.changehandler}
-                 error={this.state.errors.email}
-
-                 />
-
-                 <Form 
-                 name="password"
-                 label="Password"
-                 type="password"
-                 id="password"
-                 placeholder="Enter your Password" 
-                 value={this.state.account.password}
-                 onChange={this.changehandler}
-                 error={this.state.errors.password}
-
-                 />
-                 
-                 <input className="submit" type="submit" value="Login"></input>
-              </form> 
-            </div>
-           </div>  */}
            </React.Fragment>
         );
     }

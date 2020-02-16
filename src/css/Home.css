@@ -235,3 +235,8 @@
     background-color: white;
     border-radius: 5px;
 }
+.invalid-email{
+    color: red;
+    font-size: 15px;
+    margin-left: 30px;
+}

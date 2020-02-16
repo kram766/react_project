@@ -54,8 +54,9 @@ state = {
 
      Axios.post('http://localhost:5000',this.state.account)
       .then(result =>{
-      if(result.status===400) {return ("this email is already exit")}
-      if(result.status===200) {window.location.href="/token"}
+        if(result.status===401) return ('invalid email')
+        if(result.status===400) {return ("this email is already exit")}
+        if(result.status===200) {window.location.href="/token"}
 
     })
     .catch(err =>console.log(err));
