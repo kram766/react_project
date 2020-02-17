@@ -10,7 +10,8 @@ state = {
     errors:{},
     userdata:null,
     login_status:"",
-    email_error:""
+    email_error:"",
+    pass_error:""
 };
   
   schema = {
@@ -53,16 +54,19 @@ state = {
       
       })
     .catch(err =>{ 
-    if(err.response.status===401) return console.log('password invalid...')
+     if(err.response.status===401) {
+       console.log('password error');
+      const pass_err="incorrect password";
+      this.setState({pass_error:pass_err})
+      return null;
+    }
     if(err.response.status===404) {
     console.log('err 404')
-    const email_err="Please enter valid email";
+    const email_err="incorrect email and password";
     this.setState({email_error:email_err})
     return null;
       }
-    }
-    
-    );
+    });
   }
   
   userinformation =() =>{
@@ -81,7 +85,8 @@ state = {
            </div>
           <div className="form">
              <form onSubmit={this.handlesubmit}>
-               {this.state.email_error ? <p className="invalid-email">Please enter valid email</p>:""}
+               {this.state.email_error ? <p className="invalid-email">Incorrect email and password.....</p>:""}
+               {this.state.pass_error ? <p className="invalid-email">Incorrect password....</p>:""}
                <Form 
                name="email"
                label="Email"

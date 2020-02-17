@@ -8,7 +8,10 @@ state = {
     account:{ name:"",email:"",password:"",confirm_password:""},
     errors:{},
     password_error:"",
-    registered_info:null
+    registered_info:null,
+    email_error:"",
+    pass_error:"",
+    exits_email_error:""
 };
   
   schema = {
@@ -54,12 +57,31 @@ state = {
 
      Axios.post('http://localhost:5000',this.state.account)
       .then(result =>{
-        if(result.status===401) return ('invalid email')
-        if(result.status===400) {return ("this email is already exit")}
         if(result.status===200) {window.location.href="/token"}
 
     })
-    .catch(err =>console.log(err));
+    .catch(
+      err =>{ 
+        if(err.response.status===405) {
+          console.log('password error');
+         const pass_err="password should be atleast 6 character";
+         this.setState({pass_error:pass_err})
+         return null;
+       }
+       if(err.response.status===404) {
+       console.log('err 404')
+       const email_err="Please enter valid email";
+       this.setState({email_error:email_err})
+       return null;
+         }
+         if(err.response.status===400) {
+          console.log('err 404')
+          const email_err="Please enter valid email";
+          this.setState({exits_email_error:email_err})
+          return null;
+            }
+       }
+    );
     
 
   }
@@ -77,6 +99,9 @@ state = {
             <p>REGISTER , iF YOU ARE NEW ....</p>
             {this.state.password_error && <h5 style={style}>password and confirm password are not matching</h5>}
             </div>
+            {this.state.email_error ? <p className="invalid-email">Please enter valid email.....</p>:""}
+            {this.state.pass_error ? <p className="invalid-email">Password incorrect....</p>:""}
+            {this.state.exits_email_error ? <p className="invalid-email">Email does noe exist....</p>:""}
             <div className="form">
                <form onSubmit={this.handlesubmit}>
 
