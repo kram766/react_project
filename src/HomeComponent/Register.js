@@ -70,7 +70,7 @@ state = {
        }
        if(err.response.status===404) {
        console.log('err 404')
-       const email_err="Please enter valid email";
+       const email_err="Email already exist....";
        this.setState({email_error:email_err})
        return null;
          }
@@ -99,7 +99,7 @@ state = {
             <p>REGISTER , iF YOU ARE NEW ....</p>
             {this.state.password_error && <h5 style={style}>password and confirm password are not matching</h5>}
             </div>
-            {this.state.email_error ? <p className="invalid-email">Please enter valid email.....</p>:""}
+            {this.state.email_error ? <p className="invalid-email">Email already exist....</p>:""}
             {this.state.pass_error ? <p className="invalid-email">Password incorrect....</p>:""}
             {this.state.exits_email_error ? <p className="invalid-email">Email does noe exist....</p>:""}
             <div className="form">
