@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Form from './Form';
+import {Redirect} from 'react-router-dom';
 import Axios from 'axios';
 import Joi from 'joi-browser';
 // import AsideMenu from './AsideMenu';
-import User from './User';
 class Login extends Component {
 state = {  
     account:{ email:"",password:""},
@@ -46,13 +46,8 @@ state = {
      Axios.post('http://localhost:5000/login',this.state.account)
     .then(result =>{
       this.setState({userdata:result.data})
-      console.log(result)
-      // browserHistory.push('/User');
-      // { <Context datainfo={result.data}/>}
-    //  {this.state.userdata && <Context user={this.state.userdata.data} />}
-
-            // if(result.status===200) {window.location.href="/user"}
-      
+      if(result.status===200){
+      }      
       })
     .catch(err =>{ 
      if(err.response.status===401) {
@@ -79,9 +74,12 @@ state = {
     render() {
         return (
           <React.Fragment>
-          {/* <AsideMenu /> */}
-          {this.state.userdata ? <User user={this.state.userdata} /> : 
-  
+          {this.state.userdata ? <Redirect to={{ 
+            pathname:'/user',
+            state:{data:this.state.userdata}
+
+          }} /> : 
+             
             <div className="Register">
             
             <div className="Register-header">

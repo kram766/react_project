@@ -15,10 +15,10 @@ state = {
 };
   
   schema = {
-    name:Joi.string().required().label("Name"),
-    email:Joi.string().required().label("Email"),
-    password:Joi.string().required().label("Password"),
-    confirm_password:Joi.string().required().label("Confirm Password")
+    name:Joi.string().required().trim().label("Name"),
+    email:Joi.string().required().trim().label("Email"),
+    password:Joi.string().required().trim().label("Password"),
+    confirm_password:Joi.string().required().trim().label("Confirm Password")
 
   }
 

@@ -30,12 +30,12 @@ class Token extends Component {
             <h1>Please verfy your Email</h1>
             <div className="token_content">
                 
-                <p>Enter the Token from your Email</p>
-            <form onSubmit={this.submitHandler}>
-                <input type="text" name="token" value={this.state.user.token} onChange={this.changeHandler} />
-                <input className="submit" type="submit" value="Submit" size="25"/>
+                 <p>Enter the Token from your Email</p>
+                 <form onSubmit={this.submitHandler}>
+                     <input type="text" name="token" value={this.state.user.token} onChange={this.changeHandler} />
+                     <input className="submit" type="submit" value="Submit" size="25"/>
                 
-            </form>
+                 </form>
         </div>
         </div>
         </> );
