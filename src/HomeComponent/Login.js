@@ -46,7 +46,9 @@ state = {
      Axios.post('http://localhost:5000/login',this.state.account)
     .then(result =>{
       this.setState({userdata:result.data})
+      localStorage.setItem('rememberMe',result.data.tokens[0].token)
       if(result.status===200){
+
       }      
       })
     .catch(err =>{ 

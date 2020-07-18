@@ -1,10 +1,13 @@
 import React from 'react';
 import '../css/Home.css';
 const User = (props) => {
+  const  resetLocalstorage = ()=>{
+        localStorage.removeItem('rememberMe')
+    }
     return (
     <>
         <div className="logout">
-        <a href="/login">Logout</a>
+        <a href="/login" onClick={resetLocalstorage}>Logout</a>
         </div>
         <div className="user">
           <div className="user-information">
