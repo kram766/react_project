@@ -19,7 +19,7 @@ class App extends Component {
       <div className="App">
          <Header />        
          <Navbar />
-         <BrowserRouter>
+         <BrowserRouter basename={ window.location.pathname || " "}>
          <Route path="/user" exact component={User} />
          <Route path="/userinfo" exact component={Userinfo} />
          <Route path="/" exact component={Register} />
