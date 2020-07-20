@@ -10,7 +10,7 @@ state = {
        
           <div className="navbar">
               <ul>
-              <li><a href="./login">Login</a></li>
+              <li><a href="/login">Login</a></li>
               <li><a href="#.js">FAQs</a></li>
               <li><a href="#.js">Gate 2019</a></li>
               <li><a href="/">Home</a></li>
